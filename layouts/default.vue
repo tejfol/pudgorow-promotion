@@ -1,225 +1,221 @@
 <template>
-  <ClientOnly>
-    <div>
-      <TransitionRoot as="template" :show="sidebarOpen">
-        <Dialog
-          as="div"
-          class="relative z-50 lg:hidden"
-          @close="sidebarOpen = false"
+  <div>
+    <TransitionRoot as="template" :show="sidebarOpen">
+      <Dialog
+        as="div"
+        class="relative z-50 lg:hidden"
+        @close="sidebarOpen = false"
+      >
+        <TransitionChild
+          as="template"
+          enter="transition-opacity ease-linear duration-300"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="transition-opacity ease-linear duration-300"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
         >
+          <div class="fixed inset-0 bg-gray-900/80" />
+        </TransitionChild>
+
+        <div class="fixed inset-0 flex">
           <TransitionChild
             as="template"
-            enter="transition-opacity ease-linear duration-300"
-            enter-from="opacity-0"
-            enter-to="opacity-100"
-            leave="transition-opacity ease-linear duration-300"
-            leave-from="opacity-100"
-            leave-to="opacity-0"
+            enter="transition ease-in-out duration-300 transform"
+            enter-from="-translate-x-full"
+            enter-to="translate-x-0"
+            leave="transition ease-in-out duration-300 transform"
+            leave-from="translate-x-0"
+            leave-to="-translate-x-full"
           >
-            <div class="fixed inset-0 bg-gray-900/80" />
-          </TransitionChild>
-
-          <div class="fixed inset-0 flex">
-            <TransitionChild
-              as="template"
-              enter="transition ease-in-out duration-300 transform"
-              enter-from="-translate-x-full"
-              enter-to="translate-x-0"
-              leave="transition ease-in-out duration-300 transform"
-              leave-from="translate-x-0"
-              leave-to="-translate-x-full"
-            >
-              <DialogPanel class="relative mr-16 flex w-full max-w-xs flex-1">
-                <TransitionChild
-                  as="template"
-                  enter="ease-in-out duration-300"
-                  enter-from="opacity-0"
-                  enter-to="opacity-100"
-                  leave="ease-in-out duration-300"
-                  leave-from="opacity-100"
-                  leave-to="opacity-0"
-                >
-                  <div
-                    class="absolute left-full top-0 flex w-16 justify-center pt-5"
-                  >
-                    <button
-                      type="button"
-                      class="-m-2.5 p-2.5"
-                      @click="sidebarOpen = false"
-                    >
-                      <span class="sr-only">Close sidebar</span>
-                      <XMarkIcon
-                        class="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
-                    </button>
-                  </div>
-                </TransitionChild>
-                <!-- Sidebar component, swap this element with another sidebar if you like -->
-                <div
-                  class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-2"
-                >
-                  <div class="flex h-16 shrink-0 items-center">
-                    <img
-                      class="h-8 w-auto rounded-full"
-                      src="/images/avatar.webp"
-                      alt="Your Company"
-                    />
-                    <div class="flex ml-4 gap-4 w-full items-center">
-                      <a
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        class="block"
-                        v-for="soc in socials"
-                        :key="soc.id"
-                        :href="soc.href"
-                      >
-                        <component
-                          class="transition-colors block w-6 h-6 fill-white/50 hover:fill-white"
-                          :is="soc.icon"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <nav class="flex flex-1 flex-col">
-                    <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                      <li>
-                        <ul role="list" class="-mx-2 space-y-1">
-                          <li v-for="item in navigation" :key="item.name">
-                            <NuxtLink
-                              :href="item.href"
-                              :class="[
-                                'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
-                              ]"
-                            >
-                              <component
-                                :is="item.icon"
-                                :class="['h-6 w-6 shrink-0']"
-                                aria-hidden="true"
-                              />
-                              {{ item.name }}
-                            </NuxtLink>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </DialogPanel>
-            </TransitionChild>
-          </div>
-        </Dialog>
-      </TransitionRoot>
-
-      <!-- Static sidebar for desktop -->
-      <div
-        class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col"
-      >
-        <!-- Sidebar component, swap this element with another sidebar if you like -->
-        <div
-          class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-700 px-6"
-        >
-          <div class="flex flex-col gap-2 h-42 pt-4 shrink-0 items-center">
-            <div class="relative" to="/">
-              <img
-                class="rounded-full w-auto"
-                src="/images/avatar.webp"
-                alt="Your Company"
-              />
-              <img
-                width="230"
-                height="230"
-                class="h-full object-cover rounded-full opacity-20 absolute bottom-0"
-                src="/images/fire.gif"
-                alt="fire"
-              />
-            </div>
-            <p
-              class="text-4xl font-bold mt-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500"
-            >
-              @pudgorow
-            </p>
-            <div class="flex justify-center gap-4 w-full">
-              <a
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                class="block"
-                v-for="soc in socials"
-                :key="soc.id"
-                :href="soc.href"
+            <DialogPanel class="relative mr-16 flex w-full max-w-xs flex-1">
+              <TransitionChild
+                as="template"
+                enter="ease-in-out duration-300"
+                enter-from="opacity-0"
+                enter-to="opacity-100"
+                leave="ease-in-out duration-300"
+                leave-from="opacity-100"
+                leave-to="opacity-0"
               >
-                <component
-                  class="transition-colors block w-8 h-8 fill-white/50 hover:fill-white"
-                  :is="soc.icon"
-                />
-              </a>
-            </div>
-          </div>
-          <nav class="flex flex-1 flex-col">
-            <ul role="list" class="flex flex-1 flex-col gap-y-7">
-              <li>
-                <ul role="list" class="-mx-2 space-y-1">
-                  <li v-for="item in navigation" :key="item.name">
-                    <NuxtLink
-                      :to="item.href"
-                      :class="[
-                        'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
-                      ]"
+                <div
+                  class="absolute left-full top-0 flex w-16 justify-center pt-5"
+                >
+                  <button
+                    type="button"
+                    class="-m-2.5 p-2.5"
+                    @click="sidebarOpen = false"
+                  >
+                    <span class="sr-only">Close sidebar</span>
+                    <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true" />
+                  </button>
+                </div>
+              </TransitionChild>
+              <!-- Sidebar component, swap this element with another sidebar if you like -->
+              <div class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-2">
+                <div class="flex h-16 shrink-0 items-center">
+                  <img
+                    class="h-8 w-auto rounded-full"
+                    src="/images/avatar.webp"
+                    alt="Your Company"
+                  />
+                  <div class="flex ml-4 gap-4 w-full items-center">
+                    <a
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      class="block"
+                      v-for="soc in socials"
+                      :key="soc.id"
+                      :href="soc.href"
+                      :aria-label="soc.name"
                     >
                       <component
-                        :is="item.icon"
-                        :class="['h-6 w-6 shrink-0']"
-                        aria-hidden="true"
+                        class="transition-colors block w-6 h-6 fill-white/50 hover:fill-white"
+                        :is="soc.icon"
                       />
-                      {{ item.name }}
-                    </NuxtLink>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
+                    </a>
+                  </div>
+                </div>
+                <nav class="flex flex-1 flex-col">
+                  <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                    <li>
+                      <ul role="list" class="-mx-2 space-y-1">
+                        <li v-for="item in navigation" :key="item.name">
+                          <NuxtLink
+                            :href="item.href"
+                            class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                          >
+                            <component
+                              :is="item.icon"
+                              :class="['h-6 w-6 shrink-0']"
+                              aria-hidden="true"
+                            />
+                            {{ item.name }}
+                          </NuxtLink>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </DialogPanel>
+          </TransitionChild>
         </div>
-      </div>
+      </Dialog>
+    </TransitionRoot>
 
+    <!-- Static sidebar for desktop -->
+    <div
+      class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col"
+    >
+      <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div
-        class="sticky top-0 z-40 flex items-center gap-x-6 px-4 py-4 shadow-sm sm:px-6 lg:hidden glassmorph"
+        class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-700 px-6 z-[2]"
       >
-        <a href="/" class="flex gap-2 items-center">
-          <p>@pudgorow</p>
-          <img
-            class="h-8 w-8 rounded-full bg-gray-50"
-            src="/images/avatar.webp"
-            alt="avatar"
-          />
-        </a>
-        <div class="flex-1 text-sm font-semibold leading-6"></div>
-        <button
-          type="button"
-          class="-m-2.5 p-2.5 lg:hidden"
-          @click="sidebarOpen = true"
-        >
-          <span class="sr-only">Open sidebar</span>
-          <Bars3Icon class="h-6 w-6" aria-hidden="true" />
-        </button>
-      </div>
-
-      <main class="lg:pl-72">
-        <div class="xl:pr-96">
-          <div class="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
-            <slot />
+        <div class="flex flex-col gap-2 h-42 pt-4 shrink-0 items-center">
+          <div class="relative" to="/">
+            <img
+              class="rounded-full w-auto"
+              src="/images/avatar.webp"
+              alt="Your Company"
+            />
+            <img
+              width="230"
+              height="230"
+              class="h-full object-cover rounded-full opacity-20 absolute bottom-0 w-full"
+              src="/images/fire.gif"
+              alt="fire"
+            />
+          </div>
+          <p
+            class="text-4xl font-bold mt-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500"
+          >
+            @pudgorow
+          </p>
+          <div class="flex justify-center gap-4 w-full">
+            <a
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              class="block"
+              v-for="soc in socials"
+              :key="soc.id"
+              :href="soc.href"
+              :aria-label="soc.name"
+            >
+              <component
+                class="transition-colors block w-8 h-8 fill-white/50 hover:fill-white"
+                :is="soc.icon"
+              />
+            </a>
           </div>
         </div>
-      </main>
-
-      <aside
-        class="fixed inset-y-0 right-0 hidden w-96 overflow-y-auto border-l border-gray-700 xl:block"
-      >
-        <video class="h-full object-cover object-[16%]" autoplay loop muted>
-          <source src="/videos/loli-dance.mp4" type="video/mp4" />
-        </video>
-      </aside>
+        <nav class="flex flex-1 flex-col">
+          <ul role="list" class="flex flex-1 flex-col gap-y-7">
+            <li>
+              <ul role="list" class="-mx-2 space-y-1">
+                <li v-for="item in navigation" :key="item.name">
+                  <NuxtLink
+                    :to="item.href"
+                    class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                  >
+                    <component
+                      :is="item.icon"
+                      :class="['h-6 w-6 shrink-0']"
+                      aria-hidden="true"
+                    />
+                    {{ item.name }}
+                  </NuxtLink>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <img
+        class="absolute bottom-0 z-[1]"
+        src="/images/chain.webp"
+        alt="chain"
+      />
     </div>
-  </ClientOnly>
+
+    <div
+      class="sticky top-0 z-40 flex items-center gap-x-6 px-4 py-4 shadow-sm sm:px-6 lg:hidden glassmorph"
+    >
+      <a href="/" class="flex gap-2 items-center">
+        <p>@pudgorow</p>
+        <img
+          class="h-8 w-8 rounded-full bg-gray-50"
+          src="/images/avatar.webp"
+          alt="avatar"
+        />
+      </a>
+      <div class="flex-1 text-sm font-semibold leading-6"></div>
+      <button
+        type="button"
+        class="-m-2.5 p-2.5 lg:hidden"
+        @click="sidebarOpen = true"
+      >
+        <span class="sr-only">Open sidebar</span>
+        <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+      </button>
+    </div>
+
+    <main class="lg:pl-72">
+      <div class="xl:pr-96">
+        <div class="px-4 sm:px-6 lg:px-8 lg:py-6">
+          <slot />
+        </div>
+      </div>
+    </main>
+
+    <aside
+      class="fixed inset-y-0 right-0 hidden w-96 overflow-y-auto border-l border-gray-700 xl:block"
+    >
+      <video class="h-full object-cover object-[16%]" autoplay loop muted>
+        <source src="/videos/loli-dance.mp4" type="video/mp4" />
+      </video>
+    </aside>
+  </div>
 </template>
 
 <script setup>
@@ -241,10 +237,10 @@ import {
 } from "@heroicons/vue/24/outline";
 
 const navigation = [
-  { name: "Home", href: "/", icon: HomeIcon },
-  { name: "Music", href: "/music", icon: MusicalNoteIcon },
-  { name: "Videos", href: "/videos", icon: VideoCameraIcon },
-  { name: "Projects", href: "/projects", icon: FaceSmileIcon },
+  // { name: "Home", href: "/", icon: HomeIcon },
+  { name: "Music", href: "#music", icon: MusicalNoteIcon },
+  { name: "Videos", href: "#videos", icon: VideoCameraIcon },
+  { name: "Projects", href: "#projects", icon: FaceSmileIcon },
 ];
 
 const socials = [
@@ -290,9 +286,5 @@ const sidebarOpen = ref(false);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.router-link-active {
-  @apply glassmorph;
 }
 </style>

@@ -1,7 +1,23 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  modules: ["@nuxtjs/robots"],
+
+  robots: {
+    UserAgent: "*",
+    Disallow: "",
+  },
+
   app: {
     head: {
+      title: "pudgorow",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          name: "Pudgorows web promo",
+          content: "This is pudgorow, bitch.",
+        },
+      ],
       link: [
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         { rel: "preconnect", href: "https://fonts.gstatic.com" },

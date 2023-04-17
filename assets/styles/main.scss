@@ -5,8 +5,10 @@
 html {
   font-family: "Josefin Sans", sans-serif;
   color: white;
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #202226;
+  background: rgb(34, 32, 33);
+  background: linear-gradient(30deg, rgb(32, 6, 55) 0%, rgb(34, 32, 33) 100%);
 }
