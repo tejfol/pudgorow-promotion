@@ -1,0 +1,11 @@
+<template>
+  <iframe
+    width="100%"
+    height="465"
+    scrolling="no"
+    frameborder="no"
+    allow="autoplay"
+    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/pudgorow&amp;show_artwork=true"
+  >
+  </iframe>
+</template>
