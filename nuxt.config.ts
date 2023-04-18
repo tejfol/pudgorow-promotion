@@ -14,8 +14,8 @@ export default defineNuxtConfig({
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
-          name: "Pudgorows web promo",
-          content: "This is pudgorow, bitch.",
+          name: "description",
+          content: "pudgorows website",
         },
       ],
       link: [
@@ -28,6 +28,7 @@ export default defineNuxtConfig({
       ],
 
       htmlAttrs: {
+        lang: "en",
         class: "min-h-[100vh] bg-white ",
       },
       bodyAttrs: {
