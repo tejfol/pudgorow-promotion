@@ -51,7 +51,7 @@ const projects = [
           <img
             class="aspect-[3/2] w-full rounded-2xl object-cover object-top"
             :src="project.img"
-            alt=""
+            :alt="project.name"
           />
         </a>
         <h2
